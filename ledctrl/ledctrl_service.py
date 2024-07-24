@@ -10,8 +10,8 @@ LED2 = 26
 GPIO.setmode(GPIO.BCM) 
 GPIO.setup(LED1, GPIO.OUT)
 GPIO.setup(LED2, GPIO.OUT)
-p1 = GPIO.PWM(LED1, 3)
-p2 = GPIO.PWM(LED2, 3)
+p1 = GPIO.PWM(LED1, 3)  #run at 3Hz
+p2 = GPIO.PWM(LED2, 3)  #run at 3Hz
 
 class MinimalService(Node):
 
@@ -26,7 +26,7 @@ class MinimalService(Node):
 	# Control LED 1
         if request.led1 == 0:
             led1_req = "OFF"
-            p1.stop()
+            p1.start(0)
         elif request.led1 == 1:
             led1_req = "ON"
             p1.start(100)
@@ -40,7 +40,7 @@ class MinimalService(Node):
        # Control LED 2
         if request.led2 == 0:
             led2_req = "OFF"
-            p2.stop()
+            p2.start(0)
         elif request.led2 == 1:
             led2_req = "ON"
             p2.start(100)
@@ -49,7 +49,7 @@ class MinimalService(Node):
             p2.start(50)
         else:
             led2_req = "Error, please enter range 0 to 2 only"
-            p2.stop()
+            p2.start(0)
  
         self.get_logger().info('\nIncoming request\n  LED 1: %s \n  LED 2: %s' % (led1_req, led2_req))
 

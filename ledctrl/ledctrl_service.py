@@ -4,7 +4,7 @@ from rclpy.node import Node
 import RPi.GPIO as GPIO
 import time
 
-GPIO.setwwarnings(False)
+GPIO.setwarnings(False)
 LED1 = 19
 LED2 = 26
 GPIO.setmode(GPIO.BCM) 
